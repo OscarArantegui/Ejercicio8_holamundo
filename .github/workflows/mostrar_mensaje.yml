@@ -1,0 +1,29 @@
+name: Compilar y Ejecutar Java
+
+# Se activa al hacer 'push' a la rama 'main'
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Descarga tu código
+      - uses: actions/checkout@v4
+
+      # 2. Configura Java (para que existan 'javac' y 'java')
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # --- Aquí están los pasos de tu compañero ---
+
+      # 3. Compila el programa
+      - name: Compilar Hola.java
+        run: javac src/Hola.java
+
+      # 4. Ejecuta el programa
+      - name: Ejecutar Hola.java
+        run: java -cp src Hola
